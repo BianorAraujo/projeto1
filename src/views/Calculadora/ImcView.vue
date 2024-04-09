@@ -18,51 +18,54 @@
                                 </p>
                             </div>
                         </div>
-                        <div>
+                        <div class="button-control">
                             <button class="button primary-color" @click="calcular">Calcular</button>
                             <button class="button secondary-color" @click="limpar">Limpar</button>
-
-                            <label v-if="resultado !== null" class="label">{{resultado}} </label>
                         </div>
-                        <div>
-                            <table class="table">
+                        <div class="label-result">
+                            <div class="div-result">
+                                <label v-if="resultado !== null" class="label">{{resultado}} </label>
+                            </div>
+                        </div>
+                        <div class="table">
+                            <table>
                                 <thead>
                                     <tr>
-                                        <th>IMC</th>
-                                        <th>Classificação</th>
-                                        <th>Obesidade (grau)</th>
+                                        <th><strong>IMC</strong></th>
+                                        <th><strong>Classificação</strong></th>
+                                        <th><strong>Obesidade (grau)</strong></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr :class="{'is-info': (calc < 18.5 && calc > 0)}">
                                         <th>Menor que 18,5</th>
                                         <td>
                                             Magreza
                                         </td>
                                         <td>O</td>
                                     </tr>
-                                    <tr>
+                                    <tr :class="{'is-success': (calc < 24.9 && calc > 18.5)}">
                                         <th>Entre 18,5 e 24,9</th>
                                         <td>
                                             Normal
                                         </td>
                                         <td>O</td>
                                     </tr>
-                                    <tr>
+                                    <tr :class="{'is-warning': (calc < 29.9 && calc > 25)}">
                                         <th>Entre 25,0 e 29,9</th>
                                         <td>
                                             Sobrepeso
                                         </td>
                                         <td>I</td>
                                     </tr>
-                                    <tr>
+                                    <tr :class="{'is-danger': (calc < 39.9 && calc > 30)}">
                                         <th>Entre 30,0 e 39,9</th>
                                         <td>
                                             Obesidade
                                         </td>
                                         <td>II</td>
                                     </tr>
-                                    <tr>
+                                    <tr :class="{'is-danger': (calc < 500 && calc >= 40)}">
                                         <th>Maior que 40,0</th>
                                         <td>
                                             Obesidade Grave
@@ -71,13 +74,14 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <a class="link-aboutmore" href="#saiba-mais"><u>Entenda o cálculo</u></a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card-content">
                 <div class="content">
-                    <div class="card-text">
+                    <div id="saiba-mais" class="card-text">
                         <h4>O que é o IMC?</h4>
                         <p>
                             O Índice de Massa Corporal (IMC) é uma medida amplamente utilizada para avaliar a relação entre o peso e a altura de uma pessoa. 
@@ -143,6 +147,7 @@ export default {
         return {
             altura: null,
             peso: null,
+            calc: null,
             resultado: null
         }
     },
@@ -156,10 +161,10 @@ export default {
                 const weightInKg = parseFloat(weightWithDot);
                 const heightInMeters = parseFloat(heightWithDot);
 
-                const calc = weightInKg / (heightInMeters * heightInMeters);
+                this.calc = weightInKg / (heightInMeters * heightInMeters);
 
                 if (!isNaN(weightInKg) && !isNaN(heightInMeters)) {
-                    this.resultado = "Seu IMC: " + calc.toLocaleString('pt-BR', { maximumFractionDigits: 2 });
+                    this.resultado = "Seu IMC: " + this.calc.toLocaleString('pt-BR', { maximumFractionDigits: 2 });
                 }
             }
         },
@@ -167,6 +172,7 @@ export default {
             this.altura = "";
             this.peso = "";
             this.resultado = "";
+            this.calc = "";
         }
     }
 }
@@ -185,15 +191,12 @@ main {
 
 .card-calc {
     height: 100vh;
+    margin: 0px 50px;
 }
 
 .input {
     width: 150px;
-}
-
-.input-control {
-    display: flex;
-    justify-content: space-around;
+    margin: 0px 10px;
 }
 
 .input:focus {
@@ -201,8 +204,58 @@ main {
     --bulma-input-focus-shadow-alpha: 0;
 }
 
+.label {
+    margin: 0px 15px;
+}
+
+.input-control {
+    display: flex;
+    justify-content: center;
+}
+
+.button-control {
+    display: flex;
+    justify-content: center;
+    margin-right: 19.5vh;
+    margin-top: 20px;
+}
+
 button {
     font-size: 14px;
+    margin: 0px 6px;
+}
+
+.label-result {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.label-result .label {
+    color: #ff6a13;
+}
+
+.div-result {
+    width: 180px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.result-border {
+    border: 2px solid #ff6a13;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.link-aboutmore {
+    font-size: 12px;
+    margin-top: 20px;
+    color: #ff6a13;
 }
 
 .primary-color {
@@ -216,9 +269,35 @@ button {
     border: 1px solid #ff6a13;
 }
 
+.card-content {
+    padding: 0px 50px 80px 50px;
+}
+
 @media screen and (max-width: 1024px) {
     .card {
+        width: 70%;
+    }
+
+    .card-calc {
+        margin: 0px 0px;
+    }
+
+    .button-control {
+        margin-right: 18vh;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .card {
         width: 100%;
+    }
+
+    .card-calc {
+        margin: 0px 0px;
+    }
+
+    .button-control {
+        margin-right: 18vh;
     }
 }
 </style>
