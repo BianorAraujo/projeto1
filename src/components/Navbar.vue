@@ -10,7 +10,7 @@
 
             <div id="nav-links" class="navbar-dropdown" :class="{'show-menu':isActive}">
                 <RouterLink @click="changeStatus" class="navbar-item" to="/">Home</RouterLink>
-                <RouterLink @click="changeStatus" class="navbar-item" to="/politicas">Políticas</RouterLink>
+                <RouterLink @click="changeStatus" class="navbar-item" to="/calculadora/imc">IMC</RouterLink>
             </div>
 
         </div>

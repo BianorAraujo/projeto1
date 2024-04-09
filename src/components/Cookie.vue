@@ -6,7 +6,7 @@
                 </div>
                     
                 <div>
-                    <button type="submit" @click="saveCookies()">Entendi</button>
+                    <button class="button" type="submit" @click="saveCookies()">Entendi</button>
                 </div>
             </div>
         </div>
@@ -80,6 +80,12 @@ export default {
 a {
     color: #ff6a13 !important;
     font-weight: bold;
+}
+
+button {
+    font-size: 13px;
+    background-color: #ff6a13;
+    color: #ffffff;
 }
 
 </style>
