@@ -3,18 +3,21 @@
         <div class="card">
             <div class="card-content">
                 <div class="context">
+                    <div class="context-title">
+                        <h3 class="title is-4">Calcular IMC</h3>
+                    </div>
                     <div class=card-calc>
                         <div class="input-control">
                             <div>
                                 <label class="label">Altura</label>
                                 <p class="control">
-                                    <input class="input" type="email" placeholder="Metros" v-model="altura" />
+                                    <input class="input" type="email" placeholder="Metros" v-model="altura" v-mask="'#,##'" />
                                 </p>
                             </div>
                             <div>
                                 <label class="label">Peso</label>
                                 <p class="control">
-                                    <input class="input" type="text" placeholder="Quilos" v-model="peso" />
+                                    <input class="input" type="text" placeholder="Quilos" v-model="peso" v-mask="'##,##'" />
                                 </p>
                             </div>
                         </div>
@@ -56,19 +59,26 @@
                                         <td>
                                             Sobrepeso
                                         </td>
-                                        <td>I</td>
+                                        <td>O</td>
                                     </tr>
-                                    <tr :class="{'is-danger': (calc < 39.9 && calc > 30)}">
-                                        <th>Entre 30,0 e 39,9</th>
+                                    <tr :class="{'is-danger': (calc < 34.9 && calc > 30)}">
+                                        <th>Entre 30,0 e 34,9</th>
                                         <td>
                                             Obesidade
+                                        </td>
+                                        <td>I</td>
+                                    </tr>
+                                    <tr :class="{'is-danger': (calc < 39.9 && calc > 35)}">
+                                        <th>Entre 35,0 e 39,9</th>
+                                        <td>
+                                            Obesidade Severa
                                         </td>
                                         <td>II</td>
                                     </tr>
                                     <tr :class="{'is-danger': (calc < 500 && calc >= 40)}">
                                         <th>Maior que 40,0</th>
                                         <td>
-                                            Obesidade Grave
+                                            Obesidade Mórbida
                                         </td>
                                         <td>III</td>
                                     </tr>
@@ -189,8 +199,17 @@ main {
     justify-content: center;
 }
 
-.card-calc {
+.context {
     height: 100vh;
+}
+
+.context-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.card-calc {
     margin: 0px 50px;
 }
 
