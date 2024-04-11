@@ -4,7 +4,7 @@
             <div class="card-content">
                 <div class="context">
                     <div class="context-title">
-                        <h3 class="title is-4">Calcular IMC</h3>
+                        <h4 class="title is-4">Calcular IMC</h4>
                     </div>
                     <div class=card-calc>
                         <div class="input-control">
