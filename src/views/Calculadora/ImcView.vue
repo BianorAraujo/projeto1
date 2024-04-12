@@ -318,5 +318,13 @@ button {
     .button-control {
         margin-right: 18vh;
     }
+
+    .context {
+        height: 200vh;
+    }
+
+    .card-content {
+        padding: 0px 20px 80px 20px;
+    }
 }
 </style>
