@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import PoliticasView from '../views/PoliticasView.vue'
+import SimplesView from '../views/Calculadora/SimplesView.vue'
 import ImcView from '../views/Calculadora/ImcView.vue'
 
 const router = createRouter({
@@ -21,6 +22,11 @@ const router = createRouter({
       path: '/politicas',
       name: 'politicas',
       component: PoliticasView
+    },
+    {
+      path: '/calculadora/simples',
+      name: 'simples',
+      component: SimplesView
     },
     {
       path: '/calculadora/imc',

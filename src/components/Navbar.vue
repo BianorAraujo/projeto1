@@ -10,6 +10,7 @@
 
             <div id="nav-links" class="navbar-dropdown" :class="{'show-menu':isActive}">
                 <RouterLink @click="changeStatus" class="navbar-item" to="/">Home</RouterLink>
+                <RouterLink @click="changeStatus" class="navbar-item" to="/calculadora/simples">Simples</RouterLink>
                 <RouterLink @click="changeStatus" class="navbar-item" to="/calculadora/imc">IMC</RouterLink>
             </div>
 
@@ -22,14 +23,6 @@
 
 <script>
 export default {
-    //created(){
-        // const burgerIcon = document.querySelector('#burger');
-        // const navbarMenu = document.querySelector('#nav-links');
-
-        // burgerIcon.addEventListener('click', () => {
-        //     navbarMenu.classList.toggle('is-active');
-        // });
-    //},
     data(){
         return {
             isActive: Boolean

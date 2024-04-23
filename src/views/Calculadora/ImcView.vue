@@ -292,6 +292,10 @@ button {
     padding: 0px 50px 80px 50px;
 }
 
+.card-text {
+    padding-top: 35px;
+}
+
 @media screen and (max-width: 1024px) {
     .card {
         width: 70%;
